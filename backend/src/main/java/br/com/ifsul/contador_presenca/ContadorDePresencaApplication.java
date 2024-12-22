@@ -8,6 +8,7 @@ public class ContadorDePresencaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ContadorDePresencaApplication.class, args);
+
 	}
 
 }
