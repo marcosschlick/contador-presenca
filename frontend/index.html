@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de presenças</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Contador de presenças</h1>
+
+    <img src="IFSul.png" alt="Logo do IFSul" width="400">
+
+
+    <label id="labelDocumento">Documento:</label>
+
+    <input type="text" id="documento" name="documento" maxlength="14" placeholder="insira seu documento" oninput="mascaraDocumento(this)" required>
+
+    <button onclick="registrar()">Registrar</button>
+
+</body>
+
+</html>
