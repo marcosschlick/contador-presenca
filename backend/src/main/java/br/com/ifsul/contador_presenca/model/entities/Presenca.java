@@ -3,6 +3,7 @@ package br.com.ifsul.contador_presenca.model.entities;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,18 +16,25 @@ import jakarta.persistence.Table;
 @Table(name = "presencas")
 public class Presenca {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-	private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
+    private Usuario usuario;
 
-	private LocalDate dataEntrada;
-	private LocalTime horarioEntrada;
-	private LocalDate dataSaida;
-	private LocalTime horarioSaida;
+    @Column(name = "data_entrada", nullable = true)
+    private LocalDate dataEntrada;
+
+    @Column(name = "horario_entrada", nullable = true)
+    private LocalTime horarioEntrada;
+
+    @Column(name = "data_saida", nullable = true)
+    private LocalDate dataSaida;
+
+    @Column(name = "horario_saida", nullable = true)
+    private LocalTime horarioSaida;
 
 	public Presenca() {
 		super();
