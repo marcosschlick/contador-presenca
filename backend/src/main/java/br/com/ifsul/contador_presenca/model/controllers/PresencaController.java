@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifsul.contador_presenca.model.entities.Usuario;
-import br.com.ifsul.contador_presenca.model.repositories.UsuarioRepository;
+import br.com.ifsul.contador_presenca.model.entities.Presenca;
+import br.com.ifsul.contador_presenca.model.repositories.PresencaRepository;
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
+@RequestMapping("/presenca")
+public class PresencaController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private PresencaRepository presencaRepository;
 
 	@GetMapping
-	public Iterable<Usuario> obterUsuarios() {
-		return usuarioRepository.findAll();
+	public Iterable<Presenca> obterPresencas() {
+		return presencaRepository.findAll();
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<Usuario> obterUsuarioPorId(@PathVariable int id) {
-		return usuarioRepository.findById(id);
+	public Optional<Presenca> obterPresencaPorId(@PathVariable int id) {
+		return presencaRepository.findById(id);
 	}
 }
