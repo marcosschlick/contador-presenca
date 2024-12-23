@@ -35,3 +35,60 @@ function registrar() {
     // Se o documento for válido, mostra o alerta de registro
     alert('Documento registrado: ' + documento);
 }
+
+
+// URL base do backend
+const BASE_URL = "http://localhost:8080/presenca";
+
+// Função para registrar entrada
+function registrar() {
+    const documentoInput = document.getElementById("documento");
+    const documento = documentoInput.value.trim().replace(/\D/g, ''); // Remove tudo que não é número
+  
+    if (!documento) {
+      alert("Por favor, insira um documento válido.");
+      return;
+    }
+  
+    // Tenta registrar saída primeiro
+    fetch(`${BASE_URL}/registrar_saida/${documento}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(response => response.text())
+      .then(message => {
+        if (message.includes("Saída registrada com sucesso")) {
+          alert(message);
+          documentoInput.value = ""; // Limpa o campo após sucesso
+        } else {
+          // Se não foi possível registrar a saída, tenta registrar entrada
+          throw new Error(message);
+        }
+      })
+      .catch(error => {
+        console.warn("Tentando registrar entrada:", error.message);
+  
+        // Tenta registrar entrada
+        fetch(`${BASE_URL}/registrar/${documento}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(response => response.text())
+          .then(message => {
+            alert(message);
+            documentoInput.value = ""; // Limpa o campo após sucesso
+          })
+          .catch(err => {
+            console.error("Erro ao registrar entrada:", err);
+            alert("Houve um problema ao registrar a presença. Tente novamente.");
+          });
+      });
+  }
+  
+  
+  
+  
